@@ -46,7 +46,7 @@ def invert(field):
 class GameField(object):
     def __init__(self, height=4, width=4, win=2048):
         self.height = height  # 高
-        self.width = wdth  # 寬
+        self.width = width  # 寬
         self.win_value = win  # 過關分數
         self.score = 0  # 當前分數
         self.highscore = 0  # 最高分
@@ -145,7 +145,7 @@ class GameField(object):
 
         # 绘制水平分割线的函数
         def draw_hor_separator():
-            line = '+' + ('+-----' * self.width + '+')[1:]
+            line = '+' + ('+------' * self.width + '+')[1:]
             cast(line)
 
         # 绘制竖直分割线的函数 ?
@@ -172,7 +172,7 @@ class GameField(object):
             if self.is_gameover():
                 cast(gameover_string)
             else:
-                cast(help_string)
+                cast(help_string1)
         cast(help_string2)
 
     # 隨機生成一個2或4
