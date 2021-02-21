@@ -31,6 +31,7 @@ class ChatServer(asyncore.dispatcher):
         conn, addr = self.accept()
         ChatSession(self, conn)
 
+#维护每个用户的连接会话，这里继承 asynchat 的 async_chat 类来实现
 class ChatSession(asynchat.async_chat):
     """
     负责和客户端通信
@@ -74,6 +75,7 @@ class ChatSession(asynchat.async_chat):
         asynchat.async_chat.handle_close(self)
         self.enter(LogoutRoom(self.server))
 
+#需要实现协议命令的相应方法，具体来说就是处理用户登录，退出，发消息，查询在线用户的代码
 class CommandHandler:
     """
     命令处理类
@@ -102,6 +104,7 @@ class CommandHandler:
         except TypeError:
             self.unknown(session, cmd)
 
+#用户刚登录时的房间、聊天的房间和退出登录的房间，这三种房间都继承自 CommandHandler
 class Room(CommandHandler):
     """
     包含多个用户的环境，负责基本的命令处理和广播
