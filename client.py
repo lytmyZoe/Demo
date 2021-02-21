@@ -1,3 +1,5 @@
+#基于 wxPython 模块实现。 wxPython 模块是 wxWidgets GUI 工具的 Python 绑定。
+#所以通过 wxPython 模块我们就可以实现 GUI 编程了。同时我们的聊天协议基于文本，所以我们和服务器之间的通信将基于 telnetlib 模块实现。
 import wx
 import telnetlib
 from time import sleep
@@ -52,6 +54,7 @@ class LoginFrame(wx.Frame):
 class ChatFrame(wx.Frame):
     """
     聊天窗口
+    向服务器发消息并接受服务器的消息，这里通过子线程来接收消息
     """
 
     def __init__(self, parent, id, title, size):
